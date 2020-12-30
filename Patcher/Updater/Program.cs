@@ -13,15 +13,15 @@ namespace Updater
         static void Main(string[] args)
         {
             Console.WriteLine("~~~ Patcher - Updater ~~~");
-            Console.WriteLine("\r\nPatcher wird heruntergeladen! Bitte warten...");
+            Console.WriteLine("\r\nPatcher is downloading! Please wait...");
 
             WebClient DLPatcher = new WebClient();
             DLPatcher.Proxy = null;
             DLPatcher.DownloadFile(new Uri(String.Format("{0}update/Patcher.exe", Config.PatchserverURL)), "Patcher.exe.tmp");
 
-            Console.WriteLine("Patcher wurde heruntergeladen!");
+            Console.WriteLine("Patcher has been downloaded!");
 
-            Console.WriteLine("\r\nAlter Patcher wird gelöscht...");
+            Console.WriteLine("\r\nOld patcher will be deleted ...");
             if (File.Exists(Config.PatcherEXE))
             {
                 File.Delete(Config.PatcherEXE);
@@ -29,14 +29,14 @@ namespace Updater
             File.Move("Patcher.exe.tmp", Config.PatcherEXE);
             Console.WriteLine("Alter Patcher wurde gelöscht!");
 
-            Console.WriteLine("\r\nNeuer Patcher wird ausgeführt...");
+            Console.WriteLine("\r\nOld patcher has been deleted!");
             try
             {
                 Process.Start(Config.PatcherEXE);
             }
             catch
             {
-                Console.WriteLine("Patcher kann aus unbekannten Gründen nicht ausgeführt werden!");
+                Console.WriteLine("Patcher cannot be executed for unknown reasons!");
                 Environment.Exit(1);
             }
             Environment.Exit(0);

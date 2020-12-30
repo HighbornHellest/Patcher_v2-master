@@ -32,7 +32,7 @@ namespace Patcher
         public MainWindow()
         {
             InitializeComponent();
-            TextPatchinfo.Text = "Patcher by Hanashi\r\n\r\n";
+            TextPatchinfo.Text = "Patcher by Hanashi\r\n\r\n Updated by Highborn";
             this.IsPatched = false;
         }
 
@@ -83,7 +83,7 @@ namespace Patcher
             }
             catch
             {
-                MessageBox.Show(String.Format("Die {0} konnte nicht gefunden werden", Config.ConfigurationEXE), "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(String.Format("The {0} could not be found", Config.ConfigurationEXE), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -115,7 +115,7 @@ namespace Patcher
         {
             LblFile.Dispatcher.Invoke(DispatcherPriority.Background, new DispatcherOperationCallback(delegate
             {
-                LblFile.Content = String.Format("Datei: {0}", FileName);
+                LblFile.Content = String.Format("File: {0}", FileName);
                 return null;
             }), null);
         }
@@ -158,7 +158,7 @@ namespace Patcher
             catch { }
             LblTotal.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new System.Windows.Threading.DispatcherOperationCallback(delegate
             {
-                LblTotal.Content = String.Format("Gesamt: {0} von {1} Dateien", FileNr, TotalFiles);
+                LblTotal.Content = String.Format("Total: {0} of {1} files", FileNr, TotalFiles);
                 return null;
             }), null);
             LblTotalPercent.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new System.Windows.Threading.DispatcherOperationCallback(delegate
@@ -175,15 +175,15 @@ namespace Patcher
 
         private void GetPatchlist()
         {
-            this.SetLblFile("Patchliste");
-            this.AddTextToList("Patchliste wird heruntergeladen...");
+            this.SetLblFile("Patchlist");
+            this.AddTextToList("Getting patchlist...");
 
             WebClient DlPatchlist = new WebClient();
             DlPatchlist.Proxy = null;
             DlPatchlist.DownloadProgressChanged += new DownloadProgressChangedEventHandler(EventDownloadProgres);
             DlPatchlist.DownloadFileCompleted += delegate
             {
-                this.AddTextToList("Patchliste wurde heruntergeladen.\r\n");
+                this.AddTextToList("Patchlist has been downloaded.\r\n");
                 this.ParsePatchlist();
             };
             DlPatchlist.DownloadFileAsync(new Uri(String.Format("{0}filelist/filelist.xml", Config.PatchserverURL)), "patchlist.xml");
@@ -208,7 +208,7 @@ namespace Patcher
                 if (File.Exists(DeleteFile.Name))
                 {
                     File.Delete(DeleteFile.Name);
-                    this.AddTextToList(String.Format("{0} wurde gelöscht.\r\n", DeleteFile.Name));
+                    this.AddTextToList(String.Format("{0} Has been deleted.\r\n", DeleteFile.Name));
                 }
             }
         }
@@ -220,7 +220,7 @@ namespace Patcher
                 if (!Directory.Exists(PatchDirectory.Name))
                 {
                     Directory.CreateDirectory(PatchDirectory.Name);
-                    this.AddTextToList(String.Format("{0} wurde erstellt.\r\n", PatchDirectory.Name));
+                    this.AddTextToList(String.Format("{0} has been done.\r\n", PatchDirectory.Name));
                 }
             }
         }
@@ -236,14 +236,14 @@ namespace Patcher
         private void DownloadFile(int FileNr, List<PatchFile> PatchFiles)
         {
             this.SetLblFile(PatchFiles[FileNr].Name);
-            this.AddTextToList(String.Format("Downloade {0}...", PatchFiles[FileNr].Name));
+            this.AddTextToList(String.Format("Download {0}...", PatchFiles[FileNr].Name));
 
             WebClient FileDownload = new WebClient();
             FileDownload.Proxy = null;
             FileDownload.DownloadProgressChanged += new DownloadProgressChangedEventHandler(EventDownloadProgres);
             FileDownload.DownloadFileCompleted += delegate
             {
-                this.AddTextToList(String.Format("{0} heruntergeladen.\r\n", PatchFiles[FileNr].Name));
+                this.AddTextToList(String.Format("{0} downloaded.\r\n", PatchFiles[FileNr].Name));
                 FileNr++;
                 this.PatchFile(FileNr, PatchFiles);
             };
@@ -267,7 +267,7 @@ namespace Patcher
             else
             {
                 this.SetTotalStatus(FileNr, PatchFiles.Count);
-                this.AddTextToList(String.Format("Prüfe {0}...", PatchFiles[FileNr].Name));
+                this.AddTextToList(String.Format("Check {0}...", PatchFiles[FileNr].Name));
 
                 if (File.Exists(PatchFiles[FileNr].Name))
                 {
@@ -277,7 +277,7 @@ namespace Patcher
                     }
                     else
                     {
-                        this.AddTextToList(String.Format("{0} ist aktuell\r\n", PatchFiles[FileNr].Name));
+                        this.AddTextToList(String.Format("{0} is actual\r\n", PatchFiles[FileNr].Name));
                         FileNr++;
                         this.PatchFile(FileNr, PatchFiles);
                     }
@@ -292,7 +292,7 @@ namespace Patcher
         private void StartGame()
         {
 
-            this.AddTextToList("Das Spiel wird gestartet.\r\n");
+            this.AddTextToList("Game is Starting.\r\n");
 
             Process proc = new Process();
             proc.StartInfo.FileName = Config.BinaryName;
@@ -303,7 +303,7 @@ namespace Patcher
             }
             catch
             {
-                MessageBox.Show(String.Format("Die Datei {0} existiert nicht.", Config.BinaryName), "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(String.Format("File {0} doesn't exist.", Config.BinaryName), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             if (this.IsWin7OrHigher())
@@ -341,8 +341,8 @@ namespace Patcher
                 if (lines[0] != System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString())
                 {
                     BtnPlay.IsEnabled = false;
-                    MessageBox.Show("Es steht eine neue Version des Patchers zur Verfügung, diese wird nun automatisch heruntergeladen. Bitte gedulde dich einen Augenblick.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
-                    LblFile.Content = "Datei: Updater.exe";
+                    MessageBox.Show("New patcher version is available, is downloading pleasae be patient. This may take a while!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LblFile.Content = "Data: Updater.exe";
 
                     WebClient FileDownload = new WebClient();
                     FileDownload.Proxy = null;
@@ -356,7 +356,7 @@ namespace Patcher
                         }
                         catch
                         {
-                            MessageBox.Show("Die Updater.exe wurde nicht gefunden.", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Updated.exe was not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     };
                     FileDownload.DownloadFileAsync(new Uri(String.Format("{0}update/Updater.exe", Config.PatchserverURL)), "Updater.exe");
