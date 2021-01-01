@@ -20,29 +20,28 @@ using System.Security.Cryptography;
 using Microsoft.WindowsAPICodePack;
 using Microsoft.WindowsAPICodePack.Taskbar;
 
+
 namespace Patcher
 {
+    
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Launcher : Page
     {
         private bool IsPatched { get; set; }
 
-        public MainWindow()
+        public Launcher()
         {
             InitializeComponent();
-            TextPatchinfo.Text = "Patcher by Hanashi\r\n\r\n Updated by Highborn";
+            TextPatchinfo.Text = "Patcher Updated by Highborn";
             this.IsPatched = false;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            try
-            {
-                this.DragMove();
-            }
-            catch { }
+      
         }
 
         private bool IsWin7OrHigher()
@@ -67,24 +66,28 @@ namespace Patcher
 
         private void BtnCloseClick(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
 
         private void BtnMinimizeClick(object sender, MouseButtonEventArgs e)
         {
-            this.WindowState = WindowState.Minimized;
+            //this.WindowState = WindowState.Minimized;
         }
 
         private void BtnSettingsClick(object sender, MouseButtonEventArgs e)
         {
-            try
+
+            this.NavigationService.Navigate(new Settings());
+            
+
+            /*try
             {
                 Process.Start(Config.ConfigurationEXE);
             }
             catch
             {
                 MessageBox.Show(String.Format("The {0} could not be found", Config.ConfigurationEXE), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            }*/
         }
 
         private void BtnHomepageClick(object sender, MouseButtonEventArgs e)
@@ -352,7 +355,7 @@ namespace Patcher
                         try
                         {
                             Process.Start("Updater.exe");
-                            this.Close();
+                          //  this.Close();
                         }
                         catch
                         {
@@ -364,4 +367,9 @@ namespace Patcher
             }
         }
     }
+
+
+
+
+
 }
