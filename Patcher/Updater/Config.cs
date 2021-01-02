@@ -7,7 +7,7 @@ namespace Updater
 {
     class Config
     {
-        public const string PatchserverURL = "https://app0.eu/patcher/";
+        public const string PatchserverURL = "http://yitsora-online.eu/Patchserver/";
         public const string PatcherEXE = "Patcher.exe";
     }
 }

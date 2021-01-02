@@ -99,12 +99,15 @@ namespace Patcher
         {
             BtnPlay.IsEnabled = false;
 
+
             if (this.IsPatched)
             {
                 this.StartGame();
+                Console.WriteLine("Game is starting");
             }
             else
             {
+                Console.WriteLine("starting downloadworker");
                 BackgroundWorker bgWorker = new BackgroundWorker();
                 bgWorker.DoWork += delegate
                 {
@@ -186,16 +189,22 @@ namespace Patcher
             DlPatchlist.DownloadProgressChanged += new DownloadProgressChangedEventHandler(EventDownloadProgres);
             DlPatchlist.DownloadFileCompleted += delegate
             {
+
                 this.AddTextToList("Patchlist has been downloaded.\r\n");
+
                 this.ParsePatchlist();
+
+                this.AddTextToList("reee");
+
             };
             DlPatchlist.DownloadFileAsync(new Uri(String.Format("{0}filelist/filelist.xml", Config.PatchserverURL)), "patchlist.xml");
+            
         }
 
         private void ParsePatchlist()
         {
             PatchList Patchlist = PatchList.LoadFromXml("patchlist.xml");
-            File.Delete("patchlist.xml");
+           // File.Delete("patchlist.xml");
 
             this.SetTotalStatus(0, Patchlist.PatchFiles.Count);
 
@@ -299,7 +308,7 @@ namespace Patcher
 
             Process proc = new Process();
             proc.StartInfo.FileName = Config.BinaryName;
-            proc.StartInfo.UseShellExecute = false;
+            proc.StartInfo.UseShellExecute = true;
             try
             {
                 proc.Start();
@@ -330,7 +339,7 @@ namespace Patcher
             }
             WebClient wbClient = new WebClient();
             wbClient.Proxy = null;
-            wbClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(VersionDownload);
+            //wbClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(VersionDownload);
             wbClient.DownloadStringAsync(new Uri(String.Format("{0}admin/index.php?ajax&version", Config.PatchserverURL)));
         }
 
@@ -365,6 +374,7 @@ namespace Patcher
                     FileDownload.DownloadFileAsync(new Uri(String.Format("{0}update/Updater.exe", Config.PatchserverURL)), "Updater.exe");
                 }
             }
+
         }
     }
 

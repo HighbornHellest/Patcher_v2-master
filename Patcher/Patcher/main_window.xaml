@@ -9,7 +9,7 @@
 
     <Grid RenderTransformOrigin="0.298,0.273">
         <Grid.Background>
-            <ImageBrush ImageSource="Images\bg2.png" />
+            <ImageBrush ImageSource="Images\bg.png" />
         </Grid.Background>
 
 

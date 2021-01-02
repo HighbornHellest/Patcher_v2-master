@@ -26,7 +26,7 @@ namespace Patcher
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Launcher());
+            this.NavigationService.Navigate(main_window.launcher);
         }
     }
 }

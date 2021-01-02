@@ -25,7 +25,7 @@ namespace Patcher
         public main_window()
         {
             InitializeComponent();
-           // mainframe.NavigationService.Navigate(null);
+
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -47,12 +47,50 @@ namespace Patcher
             this.WindowState = WindowState.Minimized;
         }
 
-  
+        public static dynamic launcher = new Launcher();
 
         public void Mainframe_Loaded(object sender, RoutedEventArgs e)
         {
-            mainframe.NavigationService.Navigate(new Launcher());
+            
+            mainframe.NavigationService.Navigate(launcher);
         }
+
+
+        //ez updateli magát a patchert, erre még nincs semmi megcsinálnva
+        
+      /*  public void VersionDownload(Object sender, DownloadStringCompletedEventArgs e)
+        {
+            if (!e.Cancelled && e.Error == null)
+            {
+                string result = (string)e.Result;
+                string[] lines = result.Split('\n');
+
+                if (lines[0] != System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString())
+                {
+                    BtnPlay.IsEnabled = false;
+                    MessageBox.Show("New patcher version is available, is downloading pleasae be patient. This may take a while!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    LblFile.Content = "Data: Updater.exe";
+
+                    WebClient FileDownload = new WebClient();
+                    FileDownload.Proxy = null;
+                    FileDownload.DownloadProgressChanged += new DownloadProgressChangedEventHandler(EventDownloadProgres);
+                    FileDownload.DownloadFileCompleted += delegate
+                    {
+                        try
+                        {
+                            Process.Start("Updater.exe");
+                            //  this.Close();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Updated.exe was not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    };
+                    FileDownload.DownloadFileAsync(new Uri(String.Format("{0}update/Updater.exe", Config.PatchserverURL)), "Updater.exe");
+                }
+            }
+        }*/
+
     }
 
    
