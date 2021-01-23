@@ -17,8 +17,7 @@ using System.Net;
 using System.IO;
 using System.ComponentModel;
 using System.Security.Cryptography;
-using Microsoft.WindowsAPICodePack;
-using Microsoft.WindowsAPICodePack.Taskbar;
+
 
 
 namespace Patcher
@@ -64,30 +63,16 @@ namespace Patcher
             }
         }
 
-        private void BtnCloseClick(object sender, MouseButtonEventArgs e)
-        {
-            //this.Close();
-        }
+        
 
-        private void BtnMinimizeClick(object sender, MouseButtonEventArgs e)
-        {
-            //this.WindowState = WindowState.Minimized;
-        }
+
+
 
         private void BtnSettingsClick(object sender, MouseButtonEventArgs e)
         {
 
             this.NavigationService.Navigate(new Settings());
-            
-
-            /*try
-            {
-                Process.Start(Config.ConfigurationEXE);
-            }
-            catch
-            {
-                MessageBox.Show(String.Format("The {0} could not be found", Config.ConfigurationEXE), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }*/
+           
         }
 
         private void BtnHomepageClick(object sender, MouseButtonEventArgs e)
@@ -204,7 +189,7 @@ namespace Patcher
         private void ParsePatchlist()
         {
             PatchList Patchlist = PatchList.LoadFromXml("patchlist.xml");
-           // File.Delete("patchlist.xml");
+            File.Delete("patchlist.xml");
 
             this.SetTotalStatus(0, Patchlist.PatchFiles.Count);
 
@@ -266,9 +251,7 @@ namespace Patcher
         {
             if (this.IsWin7OrHigher())
             {
-                TaskbarManager tbmanager = TaskbarManager.Instance;
-                tbmanager.SetProgressState(TaskbarProgressBarState.Normal);
-                tbmanager.SetProgressValue(FileNr, PatchFiles.Count);
+              
             }
             if (FileNr >= PatchFiles.Count)
             {
@@ -320,8 +303,7 @@ namespace Patcher
 
             if (this.IsWin7OrHigher())
             {
-                TaskbarManager tbmanager = TaskbarManager.Instance;
-                tbmanager.SetProgressState(TaskbarProgressBarState.NoProgress);
+              
             }
 
             BtnPlay.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background, new System.Windows.Threading.DispatcherOperationCallback(delegate
@@ -339,11 +321,11 @@ namespace Patcher
             }
             WebClient wbClient = new WebClient();
             wbClient.Proxy = null;
-            //wbClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(VersionDownload);
+          //  wbClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(VersionDownload); //updater?
             wbClient.DownloadStringAsync(new Uri(String.Format("{0}admin/index.php?ajax&version", Config.PatchserverURL)));
         }
 
-        public void VersionDownload(Object sender, DownloadStringCompletedEventArgs e)
+        public void VersionDownload(Object sender, DownloadStringCompletedEventArgs e) //updater
         {
             if (!e.Cancelled && e.Error == null)
             {
@@ -363,15 +345,15 @@ namespace Patcher
                     {
                         try
                         {
-                            Process.Start("Updater.exe");
-                          //  this.Close();
+                            Process.Start(@"Updater.exe");
+                            
                         }
                         catch
                         {
-                            MessageBox.Show("Updated.exe was not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Updater.exe was not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     };
-                    FileDownload.DownloadFileAsync(new Uri(String.Format("{0}update/Updater.exe", Config.PatchserverURL)), "Updater.exe");
+                    FileDownload.DownloadFileAsync(new Uri(String.Format(@"Updater.exe", Config.PatchserverURL)), "Updater.exe");
                 }
             }
 

@@ -10,6 +10,6 @@ namespace Patcher
         public const string HomepageURL = "https://www.youtube.com/watch?v=ekAN5ywTCyA";
         public const string ConfigurationEXE = "config.exe";
         public const string PatchserverURL = "http://yitsora-online.eu/Patchserver/";
-        public const string BinaryName = @"metin2.exe";
+        public const string BinaryName = @"Metin2_releaseMode.exe";
     }
 }

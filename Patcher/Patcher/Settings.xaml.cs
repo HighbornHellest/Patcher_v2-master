@@ -32,24 +32,31 @@ namespace Patcher
         }
 
         //this is the accept
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OK_Click(object sender, RoutedEventArgs e)
         {
             String[] res = Resolution.Text.Split('x');
             ushort freq = UInt16.Parse(Frequency.Text);
             ushort gamma = UInt16.Parse(Gamma.Text);
             string windowed="0";
+            bool IME_GAME = false;
 
             if (radio_windowed.IsChecked == true)
             {
                 windowed = "1";
-            }
-            if (radio_full.IsChecked == true)
+            }else if (radio_full.IsChecked == true)
             {
                 windowed = "0";
             }
+           /* if ((bool)IME_GAME.IsChecked)
+            {
+                IME_GAME = true;
+            }*/
 
             String[] config_lines={"WIDTH"+" "+ res[0],"HEIGHT"+" "+res[1], "BPP"+" "+"32",
-                "FREQUENCY"+ " "+ Frequency.Text,
+                "FREQUENCY"+ " "+ Frequency.Text, "SOFTWARE_CURSOR" + (bool)SOFT_CUR.IsChecked,
+                "OBJECT_CULLUNG 1", "MUSIC_VOLUME "+ BG_SCROLL.Value,
+                "VOICE_VOLUME " + EF_SCROLL.Value, "USE_DEFAULT_IME" + IME_GAME,
+                "FOG_MODE_ON 1", "SNOW_MODE_ON 1", "SHOW_MOBLEVEL 1", "SHOW_MOBAIFLAG 1",
                 "WINDOWED"+" " + windowed };
 
             File.Delete(@".\metin");
@@ -62,6 +69,11 @@ namespace Patcher
             this.NavigationService.Navigate(main_window.launcher);
         }
 
-        
+        private void ScrollBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
+
+
     }
 }

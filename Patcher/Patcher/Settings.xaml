@@ -6,11 +6,14 @@
       xmlns:local="clr-namespace:Patcher"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="580"
-      Title="Settings">
+      Title="Settings"
+      xmlns:language="clr-namespace:Patcher.Properties.Langs"
+      
+      >
 
     <Grid>
 
-        <ComboBox Name="Resolution"  HorizontalAlignment="Left" Margin="127,35,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox Name="Resolution"  HorizontalAlignment="Left" Margin="127,35,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="1">
             <ComboBoxItem Content="1024x768" Height="20" Width="100"/>
             <ComboBoxItem Content="1280x720" Height="20" Width="100"/>
             <ComboBoxItem Content="1280x1024" Height="20" Width="100"/>
@@ -19,36 +22,40 @@
         </ComboBox>
 
 
-        <Label Content="Resolution" HorizontalAlignment="Left" Margin="18,35,0,0" VerticalAlignment="Top" Height="28" Width="66"/>
-        <Label Content="Frequency" HorizontalAlignment="Left" Margin="18,68,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
-        <Label Content="Gamma" HorizontalAlignment="Left" Margin="18,99,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
-        <Button Name="OK" Content="OK" HorizontalAlignment="Left" Margin="446,346,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.653,1" Click="Button_Click"/>
-        <Button Name="cancel" Content="Cancel" HorizontalAlignment="Left" Margin="75,346,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <ComboBox Name="Frequency" HorizontalAlignment="Left" Margin="127,68,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.308,-1.818">
+        <Label x:Name="Resolution_label" Content="{x:Static language:Lang.Resolution}" HorizontalAlignment="Left" Margin="18,35,0,0" VerticalAlignment="Top" Height="28" Width="66"/>
+        <Label x:Name="Freq_label" Content="{x:Static language:Lang.Frequency}" HorizontalAlignment="Left" Margin="18,68,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
+        <Label x:Name="gamma_label" Content="{x:Static language:Lang.Gamma}" HorizontalAlignment="Left" Margin="18,99,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
+        <Button Name="OK" Content="{x:Static language:Lang.Ok}" HorizontalAlignment="Left" Margin="446,346,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.653,1" Click="OK_Click" />
+        <Button Name="cancel" Content="{x:Static language:Lang.Cancel}" HorizontalAlignment="Left" Margin="75,346,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <ComboBox Name="Frequency" HorizontalAlignment="Left" Margin="127,68,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.308,-1.818" SelectedIndex="0">
             <ComboBoxItem Content="60" Height="20" Width="100"/>
             <ComboBoxItem Content="70" Height="20" Width="100"/>
             <ComboBoxItem Content="144" Height="20" Width="100"/>
             <ComboBoxItem Content="240" Height="20" Width="100"/>
         </ComboBox>
-        <ComboBox Name="Gamma" HorizontalAlignment="Left" Margin="127,103,0,0" VerticalAlignment="Top" Width="120">
+        <ComboBox Name="Gamma" HorizontalAlignment="Left" Margin="127,103,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
             <ComboBoxItem Content="1" Height="20" Width="100"/>
             <ComboBoxItem Content="2" Height="20" Width="100"/>
             <ComboBoxItem Content="3" Height="20" Width="100"/>
             <ComboBoxItem Content="4" Height="20" Width="100"/>
             <ComboBoxItem Content="5" Height="20" Width="100"/>
         </ComboBox>
-        <Label Content="WIndow mode" HorizontalAlignment="Left" Margin="339,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="201" Height="67">
-            <Label.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.537"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Label.RenderTransform>
-        </Label>
-        <RadioButton Name="radio_windowed" Content="Windowed" HorizontalAlignment="Left" Margin="344,68,0,0" VerticalAlignment="Top"  />
-        <RadioButton Name="radio_full"  Content="Full Screen" HorizontalAlignment="Left" Margin="455,68,0,0" VerticalAlignment="Top"/>
+
+        <RadioButton Name="radio_windowed" Content="{x:Static language:Lang.Windowed}" HorizontalAlignment="Left" Margin="344,68,0,0" VerticalAlignment="Top" IsChecked="True" GroupName="WINDOWED" />
+        <RadioButton Name="radio_full"  Content="{x:Static language:Lang.Fullscreen}" HorizontalAlignment="Left" Margin="455,68,0,0" VerticalAlignment="Top" GroupName="WINDOWED"/>
+        <ScrollBar x:Name="BG_SCROLL" Height="Auto" Orientation="Horizontal" Maximum="5" SmallChange="1" Margin="127,180,333,198" />
+        <Label Content="{x:Static language:Lang.BackgroundSound}" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Height="26" Width="112"/>
+        <Label Content="{x:Static language:Lang.Effect}" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top" Height="26" Width="112"/>
+        <ScrollBar x:Name="EF_SCROLL" Height="Auto" Orientation="Horizontal" Maximum="5" SmallChange="1" Margin="127,222,333,156" />
+
+
+
+        <RadioButton x:Name="IME_GAME"    Content="{x:Static language:Lang.Game}"     Margin="347,145,0,239" Width="73" HorizontalAlignment="Left" GroupName="IME" IsChecked="True"/>
+        <RadioButton x:Name="IME_EXTERN"  Content="{x:Static language:Lang.External}" Margin="0,145,64,0" VerticalAlignment="Top" HorizontalAlignment="Right" GroupName="IME" />
+        <CheckBox x:Name="SOFT_CUR" Content="{x:Static language:Lang.SoftwareCursor}" HorizontalAlignment="Left" Margin="18,266,0,0" VerticalAlignment="Top" Width="104"/>
+
+
+
 
     </Grid>
 </Page>
