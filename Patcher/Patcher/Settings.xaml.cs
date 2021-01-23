@@ -37,8 +37,21 @@ namespace Patcher
             String[] res = Resolution.Text.Split('x');
             ushort freq = UInt16.Parse(Frequency.Text);
             ushort gamma = UInt16.Parse(Gamma.Text);
-            string windowed="0";
+            string windowed = "0";
             bool IME_GAME = false;
+            var langCode = Patcher.Properties.Settings.Default.languageCode;
+            switch (langCode)
+            {
+                case "hu-HU":
+                    langCode = "1";
+                    break;
+                case "en-US":
+                    langCode = "0";
+                    break;
+                default:
+                    langCode = "0";
+                break;
+            }
 
             if (radio_windowed.IsChecked == true)
             {
@@ -52,7 +65,7 @@ namespace Patcher
                 IME_GAME = true;
             }*/
 
-            String[] config_lines={"WIDTH"+" "+ res[0],"HEIGHT"+" "+res[1], "BPP"+" "+"32",
+            String[] config_lines={"LANGCODE "+langCode, "WIDTH"+" "+ res[0],"HEIGHT"+" "+res[1], "BPP"+" "+"32",
                 "FREQUENCY"+ " "+ Frequency.Text, "SOFTWARE_CURSOR" + (bool)SOFT_CUR.IsChecked,
                 "OBJECT_CULLUNG 1", "MUSIC_VOLUME "+ BG_SCROLL.Value,
                 "VOICE_VOLUME " + EF_SCROLL.Value, "USE_DEFAULT_IME" + IME_GAME,
