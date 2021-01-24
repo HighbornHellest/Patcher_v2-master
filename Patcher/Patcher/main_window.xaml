@@ -45,8 +45,9 @@
         <!--<Frame Name="mainframe" Grid.ColumnSpan="21" Content="" Grid.Column="5" HorizontalAlignment="Left" Height="358" Margin="0,10,0,0" Grid.Row="3" Grid.RowSpan="18" VerticalAlignment="Top" Width="535" NavigationUIVisibility="Hidden" Navigated="Launcher."/>-->
         <Frame x:Name="mainframe" Content="" HorizontalAlignment="Left" Height="400" Margin="106,42,0,0" VerticalAlignment="Top" Width="580" NavigationUIVisibility="Hidden" Loaded="Mainframe_Loaded"/>
         <ComboBox x:Name="LangBox" HorizontalAlignment="Left" Margin="585,15,0,0" VerticalAlignment="Top" Width="67" SelectionChanged="LangBox_SelectionChanged">
-            <ComboBoxItem Content="{x:Static language:Lang.en}" Height="20" Width="100"/>
             <ComboBoxItem Content="{x:Static language:Lang.hu}" Height="20" Width="100"/>
+            <ComboBoxItem Content="{x:Static language:Lang.en}" Height="20" Width="100"/>
+            
 
         </ComboBox>
     </Grid>

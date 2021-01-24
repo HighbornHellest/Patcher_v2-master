@@ -70,6 +70,15 @@ namespace Patcher.Properties.Langs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Borderless.
+        /// </summary>
+        public static string Borderless {
+            get {
+                return ResourceManager.GetString("Borderless", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {

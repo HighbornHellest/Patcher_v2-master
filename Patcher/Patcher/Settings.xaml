@@ -40,9 +40,11 @@
             <ComboBoxItem Content="4" Height="20" Width="100"/>
             <ComboBoxItem Content="5" Height="20" Width="100"/>
         </ComboBox>
-
+           <!--fullcreen, borderless, windowed-->
         <RadioButton Name="radio_windowed" Content="{x:Static language:Lang.Windowed}" HorizontalAlignment="Left" Margin="344,68,0,0" VerticalAlignment="Top" IsChecked="True" GroupName="WINDOWED" />
         <RadioButton Name="radio_full"  Content="{x:Static language:Lang.Fullscreen}" HorizontalAlignment="Left" Margin="455,68,0,0" VerticalAlignment="Top" GroupName="WINDOWED"/>
+        <RadioButton x:Name="radio_borderless" Content="{x:Static language:Lang.Borderless}" HorizontalAlignment="Left" Margin="344,103,0,0" VerticalAlignment="Top" Width="76" GroupName="WINDOWED"/>
+
         <ScrollBar x:Name="BG_SCROLL" Height="Auto" Orientation="Horizontal" Maximum="5" SmallChange="1" Margin="127,180,333,198" />
         <Label Content="{x:Static language:Lang.BackgroundSound}" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Height="26" Width="112"/>
         <Label Content="{x:Static language:Lang.Effect}" HorizontalAlignment="Left" Margin="10,218,0,0" VerticalAlignment="Top" Height="26" Width="112"/>
@@ -50,10 +52,10 @@
 
 
 
-        <RadioButton x:Name="IME_GAME"    Content="{x:Static language:Lang.Game}"     Margin="347,145,0,239" Width="73" HorizontalAlignment="Left" GroupName="IME" IsChecked="True"/>
-        <RadioButton x:Name="IME_EXTERN"  Content="{x:Static language:Lang.External}" Margin="0,145,64,0" VerticalAlignment="Top" HorizontalAlignment="Right" GroupName="IME" />
+        <RadioButton x:Name="IME_GAME"    Content="{x:Static language:Lang.Game}"     Margin="347,168,0,216" Width="73" HorizontalAlignment="Left" GroupName="IME" IsChecked="True"/>
+        <RadioButton x:Name="IME_EXTERN"  Content="{x:Static language:Lang.External}" Margin="0,168,64,0" VerticalAlignment="Top" HorizontalAlignment="Right" GroupName="IME" />
         <CheckBox x:Name="SOFT_CUR" Content="{x:Static language:Lang.SoftwareCursor}" HorizontalAlignment="Left" Margin="18,266,0,0" VerticalAlignment="Top" Width="104"/>
-
+        
 
 
 

@@ -39,26 +39,33 @@ namespace Patcher
             ushort gamma = UInt16.Parse(Gamma.Text);
             string windowed = "0";
             bool IME_GAME = false;
+
+            //lang
             var langCode = Patcher.Properties.Settings.Default.languageCode;
             switch (langCode)
             {
                 case "hu-HU":
-                    langCode = "1";
+                    langCode = "0";
                     break;
                 case "en-US":
-                    langCode = "0";
+                    langCode = "1";
                     break;
                 default:
-                    langCode = "0";
+                    langCode = "1";
                 break;
             }
 
             if (radio_windowed.IsChecked == true)
             {
                 windowed = "1";
-            }else if (radio_full.IsChecked == true)
+            }
+            else if (radio_full.IsChecked == true)
             {
                 windowed = "0";
+            }
+            else if (radio_borderless.IsChecked == true)
+            {
+                windowed = "3";
             }
            /* if ((bool)IME_GAME.IsChecked)
             {
@@ -75,6 +82,9 @@ namespace Patcher
             File.Delete(@".\metin");
             string path = @".\metin";
             File.WriteAllLines(path, config_lines);
+
+            //File.Delete(@".\User\Language.ycfg");
+            System.IO.File.WriteAllText(@"User\Language.ycfg",langCode);
 
 
             

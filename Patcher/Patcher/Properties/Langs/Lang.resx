@@ -174,4 +174,7 @@
   <data name="Windowed" xml:space="preserve">
     <value>Windowed</value>
   </data>
+  <data name="Borderless" xml:space="preserve">
+    <value>Borderless</value>
+  </data>
 </root>

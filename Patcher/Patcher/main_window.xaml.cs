@@ -25,10 +25,36 @@ namespace Patcher
     {
         public main_window()
         {
-            InitializeComponent();
             var langCode = Patcher.Properties.Settings.Default.languageCode;
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
- 
+
+            /*  if (Patcher.Properties.Settings.Default.languageCode == "en-US")
+              {
+                  LangBox.SelectedIndex = 0;
+              }*/
+            InitializeComponent();
+            switch (Patcher.Properties.Settings.Default.languageCode)
+            {
+                case "hu-HU":
+                    {
+                        LangBox.SelectedIndex = 0;
+                        break;
+                    }
+                case "en-US":
+                    {
+                        LangBox.SelectedIndex = 1;
+                        break;
+                    }
+                
+                default:
+                    {
+                        LangBox.SelectedIndex = 1;
+                        break;
+                    }
+            }
+            
+
+
         }
 
         
@@ -64,15 +90,18 @@ namespace Patcher
         {
             switch (LangBox.SelectedIndex)
             {
+
                 case 0:
-                    Properties.Settings.Default.languageCode = "en-US";
+                    Properties.Settings.Default.languageCode = "hu-HU";
                     Properties.Settings.Default.Save();
                     break;
 
                 case 1:
-                    Properties.Settings.Default.languageCode = "hu-HU";
+                    Properties.Settings.Default.languageCode = "en-US";
                     Properties.Settings.Default.Save();
                     break;
+
+                
 
                 default:
                     Properties.Settings.Default.languageCode = "en-US";

@@ -154,7 +154,7 @@
     <value>Honlap</value>
   </data>
   <data name="hu" xml:space="preserve">
-    <value>Hungarian</value>
+    <value>Magyar</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Nyelv</value>
@@ -173,5 +173,8 @@
   </data>
   <data name="Windowed" xml:space="preserve">
     <value>Ablakos</value>
+  </data>
+  <data name="Borderless" xml:space="preserve">
+    <value>Borderless</value>
   </data>
 </root>
